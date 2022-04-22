@@ -99,11 +99,20 @@ public class VacantesController {
 	}*/
 	
 	
-	@GetMapping("/delete")
-	public String eliminar(@RequestParam("id") int idVacante,Model model) {
-		System.out.println("Borrando vacante con id: " +idVacante);
-		model.addAttribute("id",idVacante);
-		return "mensaje";
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") int idVacante, RedirectAttributes attributes) {
+		System.out.println("Borrando vacante con id: " +idVacante);		
+		serviceVacantes.eliminar(idVacante);		
+		attributes.addFlashAttribute("msg","La vacante fue eliminada!");
+		return "redirect:/vacantes/index";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") int idVacante, Model model){
+		Vacante vacante = serviceVacantes.buscarPorId(idVacante);
+		model.addAttribute("vacante",vacante);
+		model.addAttribute("categorias", serviceCategorias.buscarTodas());
+		return "vacantes/formVacante";
 	}
 	
 	@GetMapping("/view/{id}")

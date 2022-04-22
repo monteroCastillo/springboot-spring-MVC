@@ -27,7 +27,7 @@ public class VacantesServiceJpa implements IVacantesService {
 	public Vacante buscarPorId(Integer idVacante) {
 		Optional<Vacante> optional = vacantesRepo.findById(idVacante);
 		if(optional.isPresent()) {
-			optional.get();
+			return optional.get();
 		}
 		return null;
 	}
@@ -37,5 +37,18 @@ public class VacantesServiceJpa implements IVacantesService {
 		vacantesRepo.save(vacante);
 
 	}
+	public List<Vacante> buscarDestacados(){
+		return vacantesRepo.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
+	}
+
+
+	@Override
+	public void eliminar(Integer idVacante) {
+		vacantesRepo.deleteById(idVacante);
+		
+	}
+
+
+	
 
 }

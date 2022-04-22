@@ -95,4 +95,21 @@ public class VacantesServiceImpl implements IVacantesService{
 		
 	}
 
+
+	@Override
+	public List<Vacante> buscarDestacados() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void eliminar(Integer idVacante) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
+
 }
