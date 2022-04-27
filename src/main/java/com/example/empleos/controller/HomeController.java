@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -103,7 +104,10 @@ public class HomeController {
 		public String buscar(@ModelAttribute("search") Vacante vacante, Model model ) {
 			System.out.println("Buscando por: " + vacante);
 			
-			Example<Vacante> example = Example.of(vacante);
+			ExampleMatcher matcher = ExampleMatcher.
+					//where descripcion like '%?%'
+					matching().withMatcher("descripcion", ExampleMatcher.GenericPropertyMatchers.contains());
+			Example<Vacante> example = Example.of(vacante, matcher);
 			List<Vacante> lista = serviceVacantes.buscarByExample(example);
 			model.addAttribute("vacantes", lista);
 			return "home";

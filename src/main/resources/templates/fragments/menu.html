@@ -8,7 +8,7 @@
           <ul class="navbar-nav mr-auto">
             
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/vacantes/index}">Vacantes</a>
+              <a class="nav-link" th:href="@{/vacantes/indexPaginate}">Vacantes</a>
             </li>
             <li class="nav-item">
         	  <a class="nav-link" th:href="@{/categorias/index}">Categorias</a>
@@ -21,6 +21,7 @@
             </li>          
           </ul>  
           <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
-          <a class="btn btn-primary" href="#">Registrarse</a>
+          <a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>&nbsp;
+          <a class="btn btn-primary" th:href="@{/logout}">Salir</a>&nbsp;
         </div>
       </nav>
